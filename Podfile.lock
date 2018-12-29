@@ -1,0 +1,62 @@
+PODS:
+  - Alamofire (5.0.0.beta.1)
+  - DataCompression (3.0.0)
+  - GRDB.swift (3.5.0)
+  - ImageIOSwift_F2 (0.6.2)
+  - ObjcExceptionBridging (6.1.0):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 6.1.0)
+  - ObjcExceptionBridging/ObjcExceptionBridging (6.1.0)
+  - PureLayout (3.1.4)
+  - SwiftBaseBootstrap (0.1.6):
+    - PureLayout (~> 3.1.4)
+  - SwiftyJSON (4.2.0)
+  - XCGLogger (6.1.0):
+    - XCGLogger/Core (= 6.1.0)
+  - XCGLogger/Core (6.1.0):
+    - ObjcExceptionBridging
+
+DEPENDENCIES:
+  - Alamofire (from `../LocalPods/Alamofire-5.0.0.beta.1/`)
+  - DataCompression (from `../LocalPods/DataCompression/`)
+  - GRDB.swift (from `../LocalPods/GRDB.swift/`)
+  - ImageIOSwift_F2 (from `../LocalPods/ImageIOSwift_F2/`)
+  - ObjcExceptionBridging (from `../LocalPods/XCGLogger/`)
+  - PureLayout (from `../LocalPods/PureLayout/`)
+  - SwiftBaseBootstrap (from `../LocalPods/SwiftBaseBootstrap/`)
+  - SwiftyJSON (from `../LocalPods/SwiftyJSON/`)
+  - XCGLogger (from `../LocalPods/XCGLogger/`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :path: "../LocalPods/Alamofire-5.0.0.beta.1/"
+  DataCompression:
+    :path: "../LocalPods/DataCompression/"
+  GRDB.swift:
+    :path: "../LocalPods/GRDB.swift/"
+  ImageIOSwift_F2:
+    :path: "../LocalPods/ImageIOSwift_F2/"
+  ObjcExceptionBridging:
+    :path: "../LocalPods/XCGLogger/"
+  PureLayout:
+    :path: "../LocalPods/PureLayout/"
+  SwiftBaseBootstrap:
+    :path: "../LocalPods/SwiftBaseBootstrap/"
+  SwiftyJSON:
+    :path: "../LocalPods/SwiftyJSON/"
+  XCGLogger:
+    :path: "../LocalPods/XCGLogger/"
+
+SPEC CHECKSUMS:
+  Alamofire: 2a6bf627f6bdd942aa1ce0d0c0835161fcfcea66
+  DataCompression: 633c9074008230ad780e4c19eafe44fd0da1f864
+  GRDB.swift: 237e5636cc22760f8a923556d550c685038b8ff6
+  ImageIOSwift_F2: 95e83b074c3b2203fb8ee7b7224422fbb380d7bc
+  ObjcExceptionBridging: 0095713243612466919d5103db4b9fbbd67cf7c1
+  PureLayout: d7d327ebfd17fb2cf186b3923f90a963a3450733
+  SwiftBaseBootstrap: 2ec18481ee88096588c6d571ec7be1c0f1029579
+  SwiftyJSON: 84f790ba9f675732a6b32cea6ff20dbd0bb77e6f
+  XCGLogger: 5b68ac166f90018397e699dc809c8f9b52d4534b
+
+PODFILE CHECKSUM: ef2ed7a2e189d4b258140a930006a487e146b60d
+
+COCOAPODS: 1.5.3
