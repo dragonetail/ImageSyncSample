@@ -24,7 +24,8 @@ target 'ImageSyncSample' do
   #pod 'SwiftEventBus', :path => '../LocalPods/SwiftEventBus/'
   #pod 'CyaneaOctopus', :path => '../LocalPods/CyaneaOctopus/'
 
-  pod 'Alamofire', :path => '../LocalPods/Alamofire-5.0.0.beta.1/'
+  pod 'Alamofire', :path => '../LocalPods/Alamofire-4.8.0/'
+  #pod 'Alamofire'
   
 
   #pod 'WechatOpenSDK'
@@ -41,5 +42,8 @@ target 'ImageSyncSample' do
   #pod 'RealmSwift'
   #pod 'XLSwiftKit'
   #pod 'SwiftLint'
+  
+  #pod 'PromiseKit/Foundation'
+  #pod 'PromiseKit/Alamofire'
 
 end

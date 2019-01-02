@@ -11,16 +11,15 @@ import Photos
 import PureLayout
 import SwiftBaseBootstrap
 import ImageIOSwift_F2
+import Alamofire
 
 class ViewController: BaseViewControllerWithAutolayout {
-    static let cellId: String = "UITableViewCell"
-
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: ViewController.cellId)
+        tableView.register(TableCell.self, forCellReuseIdentifier: TableCell.identifier)
         return tableView
     }()
 
@@ -38,8 +37,8 @@ class ViewController: BaseViewControllerWithAutolayout {
         }
         return PHFetchResult<PHAsset>()
     }()
-    
-    private lazy var  option:UIBarButtonItem = {
+
+    private lazy var option: UIBarButtonItem = {
         return UIBarButtonItem(title: "前台", style: .plain, target: self, action: #selector(self.optionTapped))
     }()
 
@@ -51,11 +50,11 @@ class ViewController: BaseViewControllerWithAutolayout {
         [tableView].forEach {
             view.addSubview($0)
         }
-        
-       
+
+
         let upload = UIBarButtonItem(title: "上传", style: .plain, target: self, action: #selector(self.uploadTapped))
         let download = UIBarButtonItem(title: "下载", style: .plain, target: self, action: #selector(self.downloadTapped))
-        
+
         navigationItem.rightBarButtonItems = [download, upload, option]
     }
 
@@ -66,17 +65,58 @@ class ViewController: BaseViewControllerWithAutolayout {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    @objc func optionTapped(){
-        option.title = option.title == "前台" ? "后台": "前台"
+
+    @objc func optionTapped() {
+        option.title = option.title == "前台" ? "后台" : "前台"
     }
-    
-    @objc func uploadTapped(){
+
+    @objc func uploadTapped() {
+        tableView.indexPathsForVisibleRows?.forEach { (indexPath) in
+            //tableView.visibleCells.forEach { (cell) in
+            //if let indexPath = tableView.indexPathsForVisibleRows?.first {
+            if let cell = tableView.cellForRow(at: indexPath) as? TableCell,
+                let imageFilePath = cell.imageFilePath as URL?,
+                let imageFileSize = cell.imageFileSize {
+                log.info("FileUploader().upload: \(imageFilePath)")
+                let md5: String = "ABCDEF123456-\(indexPath.row)"
+
+                if SyncManager.shared.createUploadTask(imageFilePath.lastPathComponent, imageFilePath, imageFileSize, md5) {
+                    print("Successfully created upload task: \(imageFilePath.lastPathComponent)")
+                } else {
+                    print("Failed to create upload task: \(imageFilePath.lastPathComponent)")
+                }
+            }
+        }
+        
+        //触发后台任务启动
+        SyncManager.shared.triggerUploadTask()
+
         log.info("点击了upload")
     }
-    
-   @objc  func downloadTapped(){
-        log.info("点击了download")
+
+    @objc func downloadTapped() {
+        tableView.indexPathsForVisibleRows?.forEach { (indexPath) in
+            //tableView.visibleCells.forEach { (cell) in
+            //if let indexPath = tableView.indexPathsForVisibleRows?.first {
+            if let cell = tableView.cellForRow(at: indexPath) as? TableCell,
+                let imageFilePath = cell.imageFilePath as URL?,
+                let imageFileSize = cell.imageFileSize {
+                log.info("FileUploader().upload: \(imageFilePath)")
+                let md5: String = "ABCDEF123456-\(indexPath.row)"
+                SuperFileUploader.shared.upload(md5, imageFilePath.lastPathComponent, imageFileSize, imageFilePath) { (result: Bool, error: Error?) in
+                    guard error == nil else {
+                        print(error!)
+                        return
+                    }
+                    guard result == true else {
+                        print("File upload failed...")
+                        return
+                    }
+
+                    print("File update and merge successed...")
+                }
+            }
+        }
     }
 }
 
@@ -86,7 +126,7 @@ extension ViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ViewController.cellId, for: indexPath)
+        let cell: TableCell = tableView.dequeueReusableCell(withIdentifier: TableCell.identifier, for: indexPath) as! TableCell
 
         let asset: PHAsset = fetchResult.object(at: indexPath.row)
 
@@ -111,11 +151,15 @@ extension ViewController: UITableViewDataSource {
             let dataSize: Int = data.count
             let dataSizeStr: String = ByteCountFormatter.string(fromByteCount: Int64(dataSize), countStyle: .file)
             let fileUrl = info["PHImageFileURLKey"] as? NSURL
-            let filename: String = fileUrl?.lastPathComponent ?? "-"
+            let filename: String = fileUrl?.absoluteURL?.absoluteString ?? ""
+//            let nsdata = info["PHImageFileDataKey"] as! NSData
+//            let dataSize: Int = nsdata.length
 
 
             cell.imageView?.image = imageSource.image()
             cell.textLabel?.text = "\(indexPath.row): \(filename) (\(dataSizeStr))"
+            cell.imageFilePath = fileUrl
+            cell.imageFileSize = dataSize
         })
         return cell
     }

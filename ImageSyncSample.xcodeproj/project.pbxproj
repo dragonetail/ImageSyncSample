@@ -13,6 +13,16 @@
 		D971750D21D71CF0003BA15D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D971750C21D71CF0003BA15D /* Assets.xcassets */; };
 		D971751021D71CF0003BA15D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D971750E21D71CF0003BA15D /* LaunchScreen.storyboard */; };
 		D971751821D7244D003BA15D /* AppLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971751721D7244D003BA15D /* AppLog.swift */; };
+		D971751A21D8B057003BA15D /* FileSyncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971751921D8B057003BA15D /* FileSyncer.swift */; };
+		D971751C21D8C14A003BA15D /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971751B21D8C14A003BA15D /* TableCell.swift */; };
+		D971751E21D8E705003BA15D /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971751D21D8E705003BA15D /* DispatchQueueExtension.swift */; };
+		D971752221D99377003BA15D /* SyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752121D99377003BA15D /* SyncTask.swift */; };
+		D971752421D9970E003BA15D /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752321D9970E003BA15D /* AppDatabase.swift */; };
+		D971752621D99AC1003BA15D /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752521D99AC1003BA15D /* UploadTask.swift */; };
+		D971752821DA2D4E003BA15D /* SuperFileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752721DA2D4E003BA15D /* SuperFileUploader.swift */; };
+		D971752A21DA2D6F003BA15D /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752921DA2D6F003BA15D /* FileUploader.swift */; };
+		D971752C21DB2BD6003BA15D /* TaskChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752B21DB2BD6003BA15D /* TaskChunk.swift */; };
+		D971752E21DB7F9E003BA15D /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752D21DB7F9E003BA15D /* SyncManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +36,16 @@
 		D971750F21D71CF0003BA15D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D971751121D71CF0003BA15D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D971751721D7244D003BA15D /* AppLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLog.swift; sourceTree = "<group>"; };
+		D971751921D8B057003BA15D /* FileSyncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSyncer.swift; sourceTree = "<group>"; };
+		D971751B21D8C14A003BA15D /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		D971751D21D8E705003BA15D /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtension.swift; sourceTree = "<group>"; };
+		D971752121D99377003BA15D /* SyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTask.swift; sourceTree = "<group>"; };
+		D971752321D9970E003BA15D /* AppDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		D971752521D99AC1003BA15D /* UploadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
+		D971752721DA2D4E003BA15D /* SuperFileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperFileUploader.swift; sourceTree = "<group>"; };
+		D971752921DA2D6F003BA15D /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
+		D971752B21DB2BD6003BA15D /* TaskChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChunk.swift; sourceTree = "<group>"; };
+		D971752D21DB7F9E003BA15D /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,14 +90,40 @@
 		D971750421D71CEE003BA15D /* ImageSyncSample */ = {
 			isa = PBXGroup;
 			children = (
+				D971751F21D992F3003BA15D /* filesync */,
 				D971750521D71CEE003BA15D /* AppDelegate.swift */,
 				D971751721D7244D003BA15D /* AppLog.swift */,
 				D971750721D71CEE003BA15D /* ViewController.swift */,
+				D971751B21D8C14A003BA15D /* TableCell.swift */,
 				D971750C21D71CF0003BA15D /* Assets.xcassets */,
 				D971750E21D71CF0003BA15D /* LaunchScreen.storyboard */,
 				D971751121D71CF0003BA15D /* Info.plist */,
+				D971751D21D8E705003BA15D /* DispatchQueueExtension.swift */,
 			);
 			path = ImageSyncSample;
+			sourceTree = "<group>";
+		};
+		D971751F21D992F3003BA15D /* filesync */ = {
+			isa = PBXGroup;
+			children = (
+				D971752021D99333003BA15D /* model */,
+				D971751921D8B057003BA15D /* FileSyncer.swift */,
+				D971752721DA2D4E003BA15D /* SuperFileUploader.swift */,
+				D971752921DA2D6F003BA15D /* FileUploader.swift */,
+				D971752D21DB7F9E003BA15D /* SyncManager.swift */,
+			);
+			path = filesync;
+			sourceTree = "<group>";
+		};
+		D971752021D99333003BA15D /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D971752121D99377003BA15D /* SyncTask.swift */,
+				D971752B21DB2BD6003BA15D /* TaskChunk.swift */,
+				D971752521D99AC1003BA15D /* UploadTask.swift */,
+				D971752321D9970E003BA15D /* AppDatabase.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		E5440A7E3871B82FE4476EF3 /* Frameworks */ = {
@@ -221,9 +267,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D971751C21D8C14A003BA15D /* TableCell.swift in Sources */,
+				D971752E21DB7F9E003BA15D /* SyncManager.swift in Sources */,
+				D971752C21DB2BD6003BA15D /* TaskChunk.swift in Sources */,
 				D971750821D71CEE003BA15D /* ViewController.swift in Sources */,
+				D971752421D9970E003BA15D /* AppDatabase.swift in Sources */,
+				D971752821DA2D4E003BA15D /* SuperFileUploader.swift in Sources */,
+				D971751A21D8B057003BA15D /* FileSyncer.swift in Sources */,
 				D971751821D7244D003BA15D /* AppLog.swift in Sources */,
 				D971750621D71CEE003BA15D /* AppDelegate.swift in Sources */,
+				D971752621D99AC1003BA15D /* UploadTask.swift in Sources */,
+				D971751E21D8E705003BA15D /* DispatchQueueExtension.swift in Sources */,
+				D971752221D99377003BA15D /* SyncTask.swift in Sources */,
+				D971752A21DA2D6F003BA15D /* FileUploader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

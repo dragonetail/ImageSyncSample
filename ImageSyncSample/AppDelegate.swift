@@ -8,6 +8,10 @@
 
 import UIKit
 import Photos
+import GRDB
+
+// The shared database queue
+var dbConn: DatabaseQueue!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -47,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let window = self.window {
                 window.backgroundColor = UIColor.white
 
+                try! self.setupDatabase(application)
+
                 let navigationController = UINavigationController(rootViewController: ViewController())
                 navigationController.isNavigationBarHidden = false
                 window.rootViewController = navigationController
@@ -70,6 +76,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
             }
         })
+    }
+
+    private func setupDatabase(_ application: UIApplication) throws {
+        let databaseURL = try FileManager.default
+            .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .appendingPathComponent("db.sqlite")
+        dbConn = try AppDatabase.openDatabaseQueue(databaseURL.path)
+
+        // Be a nice iOS citizen, and don't consume too much memory
+        // See https://github.com/groue/GRDB.swift/#memory-management
+        dbConn.setupMemoryManagement(in: application)
+    }
+
+
+    func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
+        //backgroundSessionCompletionHandler = completionHandler
+        //Transporter.handleEventsForBackgroundURLSection(identifier: identifier, completionHandler: completionHandler)
+        print("AppDelegate.handleEventsForBackgroundURLSession: \(identifier)")
+        SyncManager.shared.handleEventsForBackgroundURLSection(identifier: identifier, completionHandler: completionHandler)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
