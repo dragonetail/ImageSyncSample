@@ -21,8 +21,9 @@
 		D971752621D99AC1003BA15D /* UploadTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752521D99AC1003BA15D /* UploadTask.swift */; };
 		D971752821DA2D4E003BA15D /* SuperFileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752721DA2D4E003BA15D /* SuperFileUploader.swift */; };
 		D971752A21DA2D6F003BA15D /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752921DA2D6F003BA15D /* FileUploader.swift */; };
-		D971752C21DB2BD6003BA15D /* TaskChunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752B21DB2BD6003BA15D /* TaskChunk.swift */; };
+		D971752C21DB2BD6003BA15D /* ChunkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752B21DB2BD6003BA15D /* ChunkTask.swift */; };
 		D971752E21DB7F9E003BA15D /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752D21DB7F9E003BA15D /* SyncManager.swift */; };
+		D971753021DD8B04003BA15D /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D971752F21DD8B03003BA15D /* FileUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,8 +45,9 @@
 		D971752521D99AC1003BA15D /* UploadTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTask.swift; sourceTree = "<group>"; };
 		D971752721DA2D4E003BA15D /* SuperFileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperFileUploader.swift; sourceTree = "<group>"; };
 		D971752921DA2D6F003BA15D /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
-		D971752B21DB2BD6003BA15D /* TaskChunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskChunk.swift; sourceTree = "<group>"; };
+		D971752B21DB2BD6003BA15D /* ChunkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChunkTask.swift; sourceTree = "<group>"; };
 		D971752D21DB7F9E003BA15D /* SyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		D971752F21DD8B03003BA15D /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				D971752721DA2D4E003BA15D /* SuperFileUploader.swift */,
 				D971752921DA2D6F003BA15D /* FileUploader.swift */,
 				D971752D21DB7F9E003BA15D /* SyncManager.swift */,
+				D971752F21DD8B03003BA15D /* FileUtils.swift */,
 			);
 			path = filesync;
 			sourceTree = "<group>";
@@ -119,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				D971752121D99377003BA15D /* SyncTask.swift */,
-				D971752B21DB2BD6003BA15D /* TaskChunk.swift */,
+				D971752B21DB2BD6003BA15D /* ChunkTask.swift */,
 				D971752521D99AC1003BA15D /* UploadTask.swift */,
 				D971752321D9970E003BA15D /* AppDatabase.swift */,
 			);
@@ -212,6 +215,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ImageSyncSample/Pods-ImageSyncSample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DataCompression/DataCompression.framework",
 				"${BUILT_PRODUCTS_DIR}/GRDB.swift/GRDB.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjcExceptionBridging/ObjcExceptionBridging.framework",
@@ -225,6 +229,7 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DataCompression.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjcExceptionBridging.framework",
@@ -269,7 +274,7 @@
 			files = (
 				D971751C21D8C14A003BA15D /* TableCell.swift in Sources */,
 				D971752E21DB7F9E003BA15D /* SyncManager.swift in Sources */,
-				D971752C21DB2BD6003BA15D /* TaskChunk.swift in Sources */,
+				D971752C21DB2BD6003BA15D /* ChunkTask.swift in Sources */,
 				D971750821D71CEE003BA15D /* ViewController.swift in Sources */,
 				D971752421D9970E003BA15D /* AppDatabase.swift in Sources */,
 				D971752821DA2D4E003BA15D /* SuperFileUploader.swift in Sources */,
@@ -278,6 +283,7 @@
 				D971750621D71CEE003BA15D /* AppDelegate.swift in Sources */,
 				D971752621D99AC1003BA15D /* UploadTask.swift in Sources */,
 				D971751E21D8E705003BA15D /* DispatchQueueExtension.swift in Sources */,
+				D971753021DD8B04003BA15D /* FileUtils.swift in Sources */,
 				D971752221D99377003BA15D /* SyncTask.swift in Sources */,
 				D971752A21DA2D6F003BA15D /* FileUploader.swift in Sources */,
 			);

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.0)
+  - CryptoSwift (0.13.1)
   - DataCompression (3.0.0)
   - GRDB.swift (3.5.0)
   - ImageIOSwift_F2 (0.6.2)
@@ -17,6 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `../LocalPods/Alamofire-4.8.0/`)
+  - CryptoSwift (from `../LocalPods/CryptoSwift-0.13.1/`)
   - DataCompression (from `../LocalPods/DataCompression/`)
   - GRDB.swift (from `../LocalPods/GRDB.swift/`)
   - ImageIOSwift_F2 (from `../LocalPods/ImageIOSwift_F2/`)
@@ -29,6 +31,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Alamofire:
     :path: "../LocalPods/Alamofire-4.8.0/"
+  CryptoSwift:
+    :path: "../LocalPods/CryptoSwift-0.13.1/"
   DataCompression:
     :path: "../LocalPods/DataCompression/"
   GRDB.swift:
@@ -48,6 +52,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 9fe134c53aed006bbb3b4364f5d0c982716b09c7
+  CryptoSwift: ec347f14d2153e8848ac2374a23186f4ff069d97
   DataCompression: 633c9074008230ad780e4c19eafe44fd0da1f864
   GRDB.swift: 237e5636cc22760f8a923556d550c685038b8ff6
   ImageIOSwift_F2: 95e83b074c3b2203fb8ee7b7224422fbb380d7bc
@@ -57,6 +62,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 84f790ba9f675732a6b32cea6ff20dbd0bb77e6f
   XCGLogger: 5b68ac166f90018397e699dc809c8f9b52d4534b
 
-PODFILE CHECKSUM: 6beafa39d813959becd7709142fed6177d3b49e1
+PODFILE CHECKSUM: 4377bebd44668c08487f949c153a9b730b3f1f74
 
 COCOAPODS: 1.5.3

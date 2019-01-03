@@ -26,6 +26,7 @@ target 'ImageSyncSample' do
 
   pod 'Alamofire', :path => '../LocalPods/Alamofire-4.8.0/'
   #pod 'Alamofire'
+  pod 'CryptoSwift', :path => '../LocalPods/CryptoSwift-0.13.1/'
   
 
   #pod 'WechatOpenSDK'

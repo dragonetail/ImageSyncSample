@@ -13,6 +13,8 @@ class TableCell: UITableViewCell {
         return String(describing: TableCell.self)
     }
 
+    var localIdentifier: String?
+    var uuid: String?
     var imageFilePath: NSURL?
     var imageFileSize: Int?
 

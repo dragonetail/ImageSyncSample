@@ -8,8 +8,7 @@ struct UploadTask {
     var filename: String //filename
     var size: Int
     var md5: String //Resource MD5
-    var filepath: String //Original FilePath
-    var chunks: Int
+    var fileUrl: String //Original fileUrl
     var targetUrl: String
     var method: HTTPMethod
 }
@@ -21,8 +20,7 @@ extension UploadTask: Codable, FetchableRecord, MutablePersistableRecord {
         case filename = "filename"
         case size = "size"
         case md5 = "md5"
-        case filepath = "filepath"
-        case chunks = "chunks"
+        case fileUrl = "fileUrl"
         case targetUrl = "targetUrl"
         case method = "method"
     }

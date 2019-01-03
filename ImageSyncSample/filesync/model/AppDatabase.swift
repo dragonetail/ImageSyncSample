@@ -58,9 +58,12 @@ struct AppDatabase {
                 t.column("id", .text).primaryKey()
                 t.column("taskType", .integer).notNull()
                 t.column("creationDate", .datetime).notNull()
-                 t.column("startRunningTime", .datetime)
+                t.column("state", .integer).notNull()
+                t.column("chunks", .integer).notNull()
+                t.column("runningChunks", .integer).notNull()
+                t.column("finiahedChunks", .integer).notNull()
+                t.column("startRunningTime", .datetime)
                 t.column("updatedDate", .datetime).notNull()
-                t.column("finished", .boolean).notNull()
                 t.column("error", .text)
             }
 
@@ -69,17 +72,18 @@ struct AppDatabase {
                 t.column("filename", .text).notNull()
                 t.column("size", .integer).notNull()
                 t.column("md5", .text).notNull()
-                t.column("filepath", .text).notNull()
-                t.column("chunks", .integer).notNull()
+                t.column("fileUrl", .text).notNull()
                 t.column("targetUrl", .text).notNull()
                 t.column("method", .text).notNull()
             }
-            
-            try db.create(table: "taskChunk") { t in
+
+            try db.create(table: "chunkTask") { t in
                 t.column("id", .text).references("syncTask")
                 t.column("chunk", .integer).notNull()
-                t.column("chunkFilepath", .text).notNull()
-                t.column("updatedDate", .datetime)
+                t.column("chunkFileUrl", .text).notNull()
+                t.column("md5", .text).notNull()
+                t.column("startRunningTime", .datetime)
+                t.column("updatedDate", .datetime).notNull()
                 t.column("finished", .boolean).notNull()
                 t.column("error", .text)
                 t.primaryKey(["id", "chunk"])

@@ -5,18 +5,26 @@ public enum TaskType: Int, Codable {
     case upload = 1
     case download = 2
 }
-
+public enum TaskState: Int, Codable {
+    case initial = 1
+    case preparedAndRunning = 10 // Chunk
+    case failed = 20
+    case successed = 21
+}
 
 // MARK: - 数据库模型，同步任务
 struct SyncTask {
     var id: String //UUID, from resource UUID
     var taskType: TaskType
     var creationDate: Date
+    var state: TaskState
+
+    var chunks: Int
+    var runningChunks: Int
+    var finiahedChunks: Int
 
     var startRunningTime: Date?
-
     var updatedDate: Date
-    var finished: Bool = false
     var error: String?
 }
 
@@ -26,9 +34,12 @@ extension SyncTask: Codable, FetchableRecord, MutablePersistableRecord {
         case id = "id"
         case taskType = "taskType"
         case creationDate = "creationDate"
+        case state = "state"
+        case chunks = "chunks"
+        case runningChunks = "runningChunks"
+        case finiahedChunks = "finiahedChunks"
         case startRunningTime = "startRunningTime"
         case updatedDate = "updatedDate"
-        case finished = "finished"
         case error = "error"
     }
 }
@@ -37,8 +48,8 @@ extension SyncTask: Codable, FetchableRecord, MutablePersistableRecord {
 extension SyncTask {
     static func getWaitingTasks(_ db: Database) throws -> [SyncTask] {
         let result = try SyncTask
-            .filter(CodingKeys.finished == false)
-            .filter(CodingKeys.startRunningTime == nil)
+            .filter(CodingKeys.state == TaskState.initial.rawValue || CodingKeys.state == TaskState.preparedAndRunning.rawValue)
+            .order(CodingKeys.state.desc)
             .order(CodingKeys.creationDate.asc)
             .limit(3)
             .fetchAll(db)

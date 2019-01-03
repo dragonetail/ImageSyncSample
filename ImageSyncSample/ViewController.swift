@@ -75,48 +75,48 @@ class ViewController: BaseViewControllerWithAutolayout {
             //tableView.visibleCells.forEach { (cell) in
             //if let indexPath = tableView.indexPathsForVisibleRows?.first {
             if let cell = tableView.cellForRow(at: indexPath) as? TableCell,
+                let uuid = cell.uuid,
                 let imageFilePath = cell.imageFilePath as URL?,
                 let imageFileSize = cell.imageFileSize {
                 log.info("FileUploader().upload: \(imageFilePath)")
-                let md5: String = "ABCDEF123456-\(indexPath.row)"
 
-                if SyncManager.shared.createUploadTask(imageFilePath.lastPathComponent, imageFilePath, imageFileSize, md5) {
+                if SyncManager.shared.createUploadTask(uuid, imageFilePath.lastPathComponent, imageFilePath, imageFileSize) {
                     print("Successfully created upload task: \(imageFilePath.lastPathComponent)")
                 } else {
                     print("Failed to create upload task: \(imageFilePath.lastPathComponent)")
                 }
             }
         }
-        
+
         //触发后台任务启动
-        SyncManager.shared.triggerUploadTask()
+        _ = SyncManager.shared.triggerUploadTask()
 
         log.info("点击了upload")
     }
 
     @objc func downloadTapped() {
-        tableView.indexPathsForVisibleRows?.forEach { (indexPath) in
-            //tableView.visibleCells.forEach { (cell) in
-            //if let indexPath = tableView.indexPathsForVisibleRows?.first {
-            if let cell = tableView.cellForRow(at: indexPath) as? TableCell,
-                let imageFilePath = cell.imageFilePath as URL?,
-                let imageFileSize = cell.imageFileSize {
-                log.info("FileUploader().upload: \(imageFilePath)")
-                let md5: String = "ABCDEF123456-\(indexPath.row)"
-                SuperFileUploader.shared.upload(md5, imageFilePath.lastPathComponent, imageFileSize, imageFilePath) { (result: Bool, error: Error?) in
-                    guard error == nil else {
-                        print(error!)
-                        return
-                    }
-                    guard result == true else {
-                        print("File upload failed...")
-                        return
-                    }
-
-                    print("File update and merge successed...")
-                }
-            }
-        }
+//        tableView.indexPathsForVisibleRows?.forEach { (indexPath) in
+//            //tableView.visibleCells.forEach { (cell) in
+//            //if let indexPath = tableView.indexPathsForVisibleRows?.first {
+//            if let cell = tableView.cellForRow(at: indexPath) as? TableCell,
+//                let imageFilePath = cell.imageFilePath as URL?,
+//                let imageFileSize = cell.imageFileSize {
+//                log.info("FileUploader().upload: \(imageFilePath)")
+//                let md5: String = "ABCDEF123456-\(indexPath.row)"
+//                SuperFileUploader.shared.upload(md5, imageFilePath.lastPathComponent, imageFileSize, imageFilePath) { (result: Bool, error: Error?) in
+//                    guard error == nil else {
+//                        print(error!)
+//                        return
+//                    }
+//                    guard result == true else {
+//                        print("File upload failed...")
+//                        return
+//                    }
+//
+//                    print("File update and merge successed...")
+//                }
+//            }
+//        }
     }
 }
 
@@ -134,6 +134,9 @@ extension ViewController: UITableViewDataSource {
         imageRequestOptions.isNetworkAccessAllowed = true
         imageRequestOptions.isSynchronous = false
         imageRequestOptions.version = .original
+
+        let localIdentifier = asset.localIdentifier
+        let uuid = localIdentifier.components(separatedBy: "/")[0]
         PHCachingImageManager().requestImageData(for: asset, options: imageRequestOptions, resultHandler: { data, dataUTI, orientation, info in
             guard let data = data,
                 let info = info else {
@@ -160,6 +163,8 @@ extension ViewController: UITableViewDataSource {
             cell.textLabel?.text = "\(indexPath.row): \(filename) (\(dataSizeStr))"
             cell.imageFilePath = fileUrl
             cell.imageFileSize = dataSize
+            cell.localIdentifier = localIdentifier
+            cell.uuid = uuid
         })
         return cell
     }
@@ -168,6 +173,23 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         log.info("点击了\(indexPath.row)")
+
+        if let cell = tableView.cellForRow(at: indexPath) as? TableCell,
+            let uuid = cell.uuid,
+            let imageFilePath = cell.imageFilePath as URL?,
+            let imageFileSize = cell.imageFileSize {
+            log.info("FileUploader().upload: \(imageFilePath)")
+
+            if SyncManager.shared.createUploadTask(uuid, imageFilePath.lastPathComponent, imageFilePath, imageFileSize) {
+                print("Successfully created upload task: \(imageFilePath.lastPathComponent)")
+            } else {
+                print("Failed to create upload task: \(imageFilePath.lastPathComponent)")
+            }
+        }
+
+        //触发后台任务启动
+        _ = SyncManager.shared.triggerUploadTask()
+
     }
 }
 
