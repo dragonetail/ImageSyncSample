@@ -28,14 +28,14 @@ extension UploadTask: Codable, FetchableRecord, MutablePersistableRecord {
 
 // MARK: - 数据访问
 extension UploadTask {
-    static func getWaitingTasks(_ db: Database) throws -> [UploadTask] {
-        let result = try UploadTask
-            //.filter(CodingKeys.isSuccessful == nil)
-            //.order(CodingKeys.creationDate.asc)
-            .limit(10)
-            .fetchAll(db)
-        return result
-    }
+//    static func getWaitingTasks(_ db: Database) throws -> [UploadTask] {
+//        let result = try UploadTask
+//            //.filter(CodingKeys.isSuccessful == nil)
+//            //.order(CodingKeys.creationDate.asc)
+//            .limit(10)
+//            .fetchAll(db)
+//        return result
+//    }
     
     //
     //    static func deleteBy(_ db: Database, assetId: String) throws -> Int {

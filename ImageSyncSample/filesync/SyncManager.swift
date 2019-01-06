@@ -11,7 +11,7 @@ import Alamofire
 
 class SyncManager {
     static let shared = SyncManager()
-    static let uploadUrl = "http://192.168.218.36:8080/superFileUpload"
+    static let uploadUrl = "http://192.168.218.36:5000/fileUpload"
 
     private var backgroundEventHandlers: [String: () -> ()] = [:]
 

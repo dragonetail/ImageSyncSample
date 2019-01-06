@@ -35,7 +35,7 @@ extension ChunkTask {
             .filter(CodingKeys.id == taskId)
             .filter(CodingKeys.startRunningTime == nil)
             .filter(CodingKeys.finished == false)
-            .limit(1)
+            .limit(5)
             .fetchAll(db)
         return result
     }
